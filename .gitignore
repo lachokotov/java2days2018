@@ -1,5 +1,5 @@
-.DS_Store
-.gradle/
-/generated/
-.metadata
-.gradle-wrapper
+generated
+bin
+bin_test
+target
+.gradle
