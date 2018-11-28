@@ -1,0 +1,2 @@
+-sub: *.bnd
+-buildpath: org.apache.camel.camel-core;version=2.21

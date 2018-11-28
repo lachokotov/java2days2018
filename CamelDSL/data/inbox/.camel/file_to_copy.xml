@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test name="file to copy" description="This file will be copied to data/outbox dir"/>

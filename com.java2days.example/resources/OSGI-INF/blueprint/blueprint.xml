@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<camelContext
+		xmlns="http://camel.apache.org/schema/blueprint"
+		trace="true">
+
+		<route id="file-copy" trace="true">
+			<!-- <from id="from inbox" uri="file:java2days/filecopy/inbox?noop=true" /> -->
+			<from id="from inbox" uri="file:java2days/filecopy/inbox" />
+			<log message="Move from inbox to outbox" />
+			<to id="to outbox" uri="file:java2days/filecopy/outbox" />
+		</route>
+	</camelContext>
+</blueprint>

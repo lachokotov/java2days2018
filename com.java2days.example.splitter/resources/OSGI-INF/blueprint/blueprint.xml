@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- National rail LDBWS. Downloads from departure board web servise. -->
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<bean id="aggregator"
+		class="com.java2days.example.splitter.SplitAggregateStrategy" />
+	<camelContext
+		xmlns="http://camel.apache.org/schema/blueprint" trace="true">
+
+		<route id="split" trace="true">
+			<from id="direct" uri="file:java2days/split/inbox/" />
+			<split>
+				<tokenize token=" " />
+				<setHeader headerName="CamelFileName">
+					<simple>Splited_${body}.txt</simple>
+				</setHeader>
+				<setHeader headerName="aggregate">
+					<simple>true</simple>
+				</setHeader>
+				<to uri="file:java2days/split/outbox" />
+			</split>
+			<!-- <to uri="direct:aggregate-message" /> -->
+		</route>
+<!-- 		<route>
+			<from uri="direct:aggregate-message" />
+			<aggregate strategyRef="aggregator" completionFromBatchConsumer="true">
+				<correlationExpression>
+					<simple>aggregate</simple>
+				</correlationExpression>
+				<setHeader headerName="CamelFileName">
+					<simple>AggregateSplited.txt</simple>
+				</setHeader>
+				<to uri="file:java2days/split/aggregated_outbox" />
+			</aggregate>
+		</route> -->
+	</camelContext>
+</blueprint>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- National rail LDBWS. Downloads from departure board web servise. -->
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+        <route>
+            <from uri="direct:start"/>
+            <!-- use the load balancer EIP in a round robin fashion -->
+            <loadBalance>
+                <roundRobin/>
+                <!-- these are the 2 processors which we balance across -->
+                <!-- notice its just DSL in the Camel route, so you can
+                     balance across whatever you can do in the DSL -->
+                <to uri="seda:a"/>
+                <to uri="seda:b"/>
+            </loadBalance>
+        </route>
+
+        <!-- service A -->
+        <route>
+            <from uri="seda:a"/>
+            <log message="A received: ${body}"/>
+            <to uri="mock:a"/>
+        </route>
+
+        <!-- service B -->
+        <route>
+            <from uri="seda:b"/>
+            <log message="B received: ${body}"/>
+            <to uri="mock:b"/>
+        </route>
+
+    </camelContext>
+</blueprint>

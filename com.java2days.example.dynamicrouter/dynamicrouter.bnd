@@ -1,0 +1,3 @@
+-includeresource: resources
+Bundle-Version: 1.0.0
+Private-Package: com.java2days.example.dynamicrouter

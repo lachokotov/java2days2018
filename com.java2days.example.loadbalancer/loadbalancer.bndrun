@@ -1,0 +1,17 @@
+-runpath: biz.aQute.remote.launcher
+-runremote: karaf; host = localhost; jdb = 5005; agent = 29998; shell = -1; timeout = 10000
+
+-runproperties: gosh.args=--noshutdown
+
+-runfw: org.apache.felix.framework;version=4
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability}
+
+-resolve.effective: active;skip:="osgi.service"
+
+-runbundles: com.java2days.example.loadbalancer.roundRobin;version=latest
+
+-runrequires:\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)'
+-tester: biz.aQute.junit
