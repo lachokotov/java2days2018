@@ -16,7 +16,7 @@ Download [Karaf 4.1.6](http://karaf.apache.org/download.html)
 ## Prepare Karaf OSGi container
 
 ```
-# Add Camel feature repositories
+# Add Karaf feature repositories
 ```
 ```shell
 karaf@root()> repo-add camel 2.21.1
