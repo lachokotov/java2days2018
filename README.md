@@ -33,8 +33,7 @@ karaf@root()> feature:install camel-core camel-blueprint aries-blueprint aries-b
 # Add BND remote agent
 ```
 ```shell
-karaf@root(bundle)> install mvn:biz.aQute.bnd/biz.aQute.remote.agent/4.0.0
-karaf@root(bundle)> start (aQute Bundle ID)
+karaf@root(bundle)> install -s mvn:biz.aQute.bnd/biz.aQute.remote.agent/4.0.0
 ```
 # Usage
 Run projects from *.bndrun files as BND Native Launcher.
