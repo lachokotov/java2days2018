@@ -11,7 +11,7 @@ Download [Karaf 4.1.6](http://karaf.apache.org/download.html)
 ## Prepare Eclipse IDE
 
 - Install BndTools 4.0.0 plugin. Go to menu Help/EclipseMarketplace type BND in search field and press GO.
-- Clone project in workplace and import it as existing project from it.
+- Clone project in workplace and import it as existing project.
 
 ## Prepare Karaf OSGi container
 
