@@ -24,7 +24,7 @@ karaf@root()> repo-add hawtio
 karaf@root()> repo-add activemq 5.15.6
 ```
 ```
-# Add Camel features
+# Add Karaf features
 ```
 ```shell
 karaf@root()> feature:install camel-core camel-blueprint aries-blueprint aries-blueprint shell-compat hawtio activemq-broker camel-jms
